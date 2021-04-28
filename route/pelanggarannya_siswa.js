@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 // GET: /pelanggaran_siswa --> end-point menampilkan data pelanggaran siswa
 app.get("/", (req,res) => {
     // create sql query
-    let sql = "select p.id_pelanggaran_siswa, p.id_siswa, p.waktu, s.nis, s.nama_siswa, p.id_user, u.username " +
-     "from pelanggaran_siswa p join siswa s on p.id_siswa = s.id_siswa " +
+    let sql = "select p.id_pelanggarannya_siswa, p.id_siswa, p.waktu, s.nis, s.nama_siswa, p.id_user, u.username " +
+     "from pelanggarannya_siswa p join siswa s on p.id_siswa = s.id_siswa " +
      "join user u on p.id_user = u.id_user"
 
     // run query
@@ -24,14 +24,14 @@ app.get("/", (req,res) => {
         }else{
             res.json({
                 count: result.length,
-                pelanggaran_siswa: result
+                pelanggarannya_siswa: result
             })
         }
     })
 })
-// POST: /pelanggaran_siswa/save --> end-point menambahkan data pelanggaran siswa 
+// POST: /pelanggarannya_siswa/save --> end-point menambahkan data pelanggaran siswa 
 app.post("/save", (req,res) => {
-    // prepare data to pelanggaran_siswa
+    // prepare data to pelanggarannya_siswa
     let data = {
         id_siswa: req.body.id_siswa,
         id_user: req.body.id_user,
@@ -40,8 +40,8 @@ app.post("/save", (req,res) => {
 
     // parse to JSON
     let pelanggaran = JSON.parse(req.body.pelanggaran)
-    // create query insert to pelanggaran_siswa
-    let sql = "insert into pelanggaran_siswa set ?"
+    // create query insert to pelanggarannya_siswa
+    let sql = "insert into pelanggarannya_siswa set ?"
     // run query
     db.query(sql, data, (error, result) => {
         let response = null
@@ -69,9 +69,9 @@ app.post("/save", (req,res) => {
         }
     })
 })
-// end-point untuk menghapus data pelanggaran_siswa
-app.delete("/:id_pelanggaran_siswa", (req, res) => {
-    let param = { id_pelanggaran_siswa: req.params.id_pelanggaran_siswa}
+// end-point untuk menghapus data pelanggarannya_siswa
+app.delete("/:id_pelanggarannya_siswa", (req, res) => {
+    let param = { id_pelanggarannya_siswa: req.params.id_pelanggarannya_siswa}
 
     // create sql query delete detail_pelanggaran
     let sql = "delete from detail_pelanggaran_siswa where ?"
@@ -80,9 +80,9 @@ app.delete("/:id_pelanggaran_siswa", (req, res) => {
         if (error) {
             res.json({ message: error.message})
         } else {
-            let param = { id_pelanggaran_siswa: req.params.id_pelanggaran_siswa}
-            // create sql query delete pelanggaran_siswa
-            let sql = "delete from pelanggaran_siswa where ?"
+            let param = { id_pelanggarannya_siswa: req.params.id_pelanggarannya_siswa}
+            // create sql query delete pelanggarannya_siswa
+            let sql = "delete from pelanggarannya_siswa where ?"
 
             db.query(sql, param, (error, result) => {
                 if (error) {
