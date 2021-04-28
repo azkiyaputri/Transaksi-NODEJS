@@ -17,9 +17,9 @@ app.use("/pegawai",auth, pegawai)
 const pelanggaran = require("./route/pelanggaran")
 app.use("/pelanggaran",auth, pelanggaran)
 
-//base url -> http://localhost:2000/pelanggaran_siswa
-const pelanggaran_siswa = require("./route/pelanggaran_siswa")
-app.use("/pelanggaran_siswa", auth, pelanggaran_siswa)
+//base url -> http://localhost:2000/pelanggarannya_siswa
+const pelanggarannya_siswa = require("./route/pelanggarannya_siswa")
+app.use("/pelanggarannya_siswa", auth, pelanggarannya_siswa)
 
 //base url -> http://localhost:2000/detail_pelanggaran_siswa
 const detail_pelanggaran_siswa = require("./route/detail_pelanggaran_siswa")
